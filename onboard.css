@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Galindo&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #1f1f21;
+  --color-secondary: #e7819b;
+  --color-tetriary: #0eee7e;
+  --color-grey: #9b9999;
+  --color-white: #eee;
+}
+
+body {
+  font-family: "Galindo", sans-serif;
+  color: #eee;
+  background: url(images/Welcome-Screen--bkg.png) center/cover no-repeat;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  padding-left: 8rem;
+}
+
+.guess-head {
+  font-size: 10rem;
+  color: var(--color-grey);
+}
+.guess-btm {
+  font-size: 5.5rem;
+  margin-top: -3rem;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 2.5rem;
+  color: var(--color-tetriary);
+  background-color: var(--color-primary);
+  border: none;
+  padding: 1.5rem 4.5rem;
+  border-radius: 10rem;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+p {
+  max-width: 80rem;
+  margin-top: 4rem;
+  text-align: left;
+  font-size: 1.5rem;
+  color: var(--color-grey);
+  background-color: var(--color-primary);
+  padding: 2rem 2rem 1rem 2rem;
+  border-radius: 1rem;
+}
