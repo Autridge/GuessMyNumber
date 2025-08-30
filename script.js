@@ -2,16 +2,74 @@
 let levels = document.getElementById("levels");
 let selectedLevel = levels.value; // Should contain first value "Rookie" by default
 let attempts = 0;
+let scorePoints = 0;
 
-let score = 20;
-let highScore = 0;
+let currentScore = document.querySelector(".label-score .score");
+currentScore.textContent = 0;
+let highScore = document.querySelector(".label-highscore .highscore");
 
-let randomNumber = Math.trunc(Math.random() * 20) + 1;
-console.log(randomNumber);
-localStorage.setItem("randomNum", JSON.stringify(randomNumber));
+//Storing the highscore to localStorage
+function keepHighscore(){
+    const currentHighscore = parseInt(highScore.textContent);
+    localStorage.setItem("highscore", currentHighscore);
+}
+
+const levelData = {
+    "rookie" : {attempts: 20, scorePoints: 3},
+    "world-class": {attempts: 10, scorePoints: 5},
+    "Legendary": {attempts: 5, scorePoints: 7},
+}
+
+// function to update attempts basing on level
+function updateAttempts(level){
+    attempts = levelData[level].attempts;
+    localStorage.setItem("attempts", attempts);
+    return attempts;
+}
+
+//function to update score points basing on level
+function handlePoints(level){
+    scorePoints = levelData[level].scorePoints;
+    localStorage.setItem("points", scorePoints);
+    return scorePoints;
+    
+}
+
+//function to update the level label below the level selector
+let levelLabel = document.getElementById("level-label");
+function levelDescription(currentAttempts, maxAttempts){
+    levelLabel.textContent = `${currentAttempts} / ${maxAttempts} attempts left`;
+}
+
+function UpdatedLevel(level){
+    let updatedAttempts = updateAttempts(level);
+    let maxAttempts = levelData[level].attempts;
+    handlePoints(level);
+    levelDescription(updatedAttempts, maxAttempts);
+}
+
+
+// Making sure to have the latest highscore on page load
+document.addEventListener("DOMContentLoaded", ()=>{
+    let storedHighscore = parseInt(localStorage.getItem("highscore"));
+
+    if(!isNaN(storedHighscore)){
+        highScore.textContent = storedHighscore;
+    }else{
+        highScore.textContent = 0;
+    }
+
+    UpdatedLevel(selectedLevel);
+
+    
+
+})
+
+
 
 levels.addEventListener("change", function () {
   selectedLevel = levels.value; // Should contain new value once level is changed
+  UpdatedLevel(selectedLevel);
 });
 
 //displaying Message
@@ -44,12 +102,15 @@ checkBtn.addEventListener("click", () => {
       document.querySelector(".highscore").textContent = highScore;
     }
   } else if (userNumber !== randomNumber) {
-    if (score > 1) {
+    if (attempts > 1) {
       displayMessage(
         userNumber > randomNumber ? "📈 Too high!" : "📉 Too low!"
       );
-      score--;
-      document.querySelector(".score").textContent = score;
+      attempts--;
+      
+
+      levelDescription(attempts, levelData[selectedLevel].attempts);
+    //   document.querySelector(".score").textContent = score;
     } else {
       displayMessage("💥 You lost the game!");
       document.querySelector(".score").textContent = 0;
@@ -59,6 +120,8 @@ checkBtn.addEventListener("click", () => {
 
 //Generating Random Number
 let restartBtn = document.querySelector(".right button:last-of-type");
+
+
 
 restartBtn.addEventListener("click", () => {
   //generate new number every time the button is clicked
