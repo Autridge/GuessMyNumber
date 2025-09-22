@@ -9,6 +9,28 @@ html {
   box-sizing: border-box;
 }
 
+/* Responsive font-size adjustments */
+@media (max-width: 75em) {
+  /* 1200px */
+  html {
+    font-size: 56.25%; /* 9px */
+  }
+}
+
+@media (max-width: 56.25em) {
+  /* 900px */
+  html {
+    font-size: 50%; /* 8px */
+  }
+}
+
+@media (max-width: 37.5em) {
+  /* 600px */
+  html {
+    font-size: 43.75%; /* 7px */
+  }
+}
+
 :root {
   --color-primary: #1f1f21;
   --color-secondary: #e7819b;
@@ -22,31 +44,37 @@ body {
   color: #eee;
   background: url(images/Screen--Playing-bkg.png) center/cover no-repeat;
   height: 100vh;
+  overflow-x: hidden;
 }
 
 header {
   display: flex;
   justify-content: space-between;
-  padding: 8rem;
+  align-items: flex-start;
+  padding: clamp(2rem, 8vw, 8rem);
+  padding-bottom: clamp(1rem, 4vw, 4rem);
 }
+
 .guess-head {
-  font-size: 8rem;
+  font-size: clamp(4rem, 8vw, 8rem);
   color: var(--color-secondary);
+  line-height: 1.1;
 }
+
 .guess-btm {
-  font-size: 4.5rem;
-  margin-top: -3rem;
+  font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+  margin-top: clamp(-2rem, -3vw, -3rem);
+  line-height: 1.2;
 }
 
 .level {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-right: 30rem;
+  margin-right: clamp(0rem, 25vw, 30rem);
 }
 
 select {
-  display: flex;
   font-family: "Galindo", sans-serif;
   background-color: var(--color-primary);
   border: none;
@@ -63,6 +91,9 @@ select {
   -moz-appearance: none;
   transition: all 0.3s ease;
   cursor: pointer;
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
+  min-width: fit-content;
+  white-space: nowrap;
 }
 
 select:hover {
@@ -72,9 +103,10 @@ select:hover {
 }
 
 label {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
   color: var(--color-grey);
   margin-bottom: 0.8rem;
+  text-align: center;
 }
 
 main {
@@ -82,6 +114,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  padding: 0 clamp(1rem, 5vw, 5rem);
+  gap: 2rem;
 }
 
 .left {
@@ -89,13 +123,14 @@ main {
   flex-direction: column;
   align-items: center;
   font-family: inherit;
+  flex: 1;
 }
 
 .guess {
-  font-size: 16rem;
+  font-size: clamp(8rem, 12vw, 16rem);
   color: var(--color-secondary);
-  width: 30rem;
-  height: 20rem;
+  width: clamp(20rem, 25vw, 30rem);
+  height: clamp(15rem, 18vw, 20rem);
   border: none;
   border-radius: 1.5rem;
   display: flex;
@@ -105,14 +140,17 @@ main {
   margin-bottom: 2rem;
   background-color: var(--color-primary);
   font-family: inherit;
+  max-width: 90vw;
 }
+
 .guess:focus {
   outline: none;
   box-shadow: 0 0 1rem var(--color-secondary);
 }
+
 .btn {
   font-family: inherit;
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 2.5vw, 2.5rem);
   color: var(--color-white);
   background-color: var(--color-primary);
   border: none;
@@ -121,48 +159,243 @@ main {
   cursor: pointer;
   margin-bottom: 2rem;
   transition: all 0.3s ease;
+  white-space: nowrap;
+  min-width: fit-content;
 }
 
 .message {
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 2.5vw, 2.5rem);
   color: var(--color-grey);
-  height: 3rem;
+  height: auto;
+  min-height: 3rem;
+  text-align: center;
+  line-height: 1.4;
 }
+
 .btn:hover {
   background-color: var(--color-secondary);
   box-shadow: 0 0 1rem var(--color-secondary);
 }
 
+.btn:active {
+  transform: scale(0.98);
+}
+
 .right {
-  margin-right: 25rem;
+  margin-right: clamp(0rem, 20vw, 25rem);
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+  flex: 1;
+  max-width: 35rem;
 }
+
 .right p {
   background-color: var(--color-primary);
-  padding: 1.5rem 10rem 1.5rem 2rem;
+  padding: 1.5rem 2rem;
   border-radius: 1rem;
   text-align: left;
+  font-size: clamp(1.4rem, 1.8vw, 1.8rem);
+  line-height: 1.4;
 }
 
 .number {
   background: var(--color-white);
   color: var(--color-primary);
-  font-size: 6rem;
-  width: 15rem;
-  padding: 3rem 0rem;
+  font-size: clamp(4rem, 6vw, 6rem);
+  width: clamp(12rem, 15vw, 15rem);
+  padding: clamp(2rem, 3vw, 3rem) 0;
   text-align: center;
   border-radius: 1.5rem;
+  margin: 0 auto 2rem auto;
 }
+
 .right p span {
   color: var(--color-secondary);
-  font-size: 2rem;
+  font-size: clamp(1.6rem, 2vw, 2rem);
   margin-right: 1rem;
+  font-weight: bold;
 }
-.right p:nth-child(2) {
-  font-size: 2rem;
-}
+
+.right p:nth-child(2),
 .right p:nth-child(3) {
-  font-size: 2rem;
+  font-size: clamp(1.6rem, 2vw, 2rem);
+}
+
+/* Tablet styles */
+@media (max-width: 56.25em) {
+  /* 900px */
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .level {
+    margin-right: 0;
+    order: 2;
+  }
+
+  .guess-head,
+  .guess-btm {
+    order: 1;
+  }
+
+  main {
+    flex-direction: column;
+    gap: 3rem;
+    padding-top: 2rem;
+  }
+
+  .right {
+    margin-right: 0;
+    width: 100%;
+    max-width: 50rem;
+    align-items: center;
+  }
+
+  .number {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 37.5em) {
+  /* 600px */
+  header {
+    padding: 2rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .guess-head {
+    font-size: clamp(3rem, 10vw, 5rem);
+  }
+
+  .guess-btm {
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin-top: -1rem;
+  }
+
+  select {
+    padding: 1.2rem 3.5rem 1.2rem 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  main {
+    padding: 0 1rem;
+    gap: 2rem;
+  }
+
+  .guess {
+    width: clamp(25rem, 80vw, 35rem);
+    height: clamp(18rem, 25vw, 25rem);
+    font-size: clamp(10rem, 20vw, 14rem);
+  }
+
+  .btn {
+    padding: 1.2rem 3rem;
+    font-size: 1.8rem;
+    width: fit-content;
+    margin: 0 auto 2rem auto;
+  }
+
+  .right {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .right p {
+    padding: 1.2rem 1.5rem;
+    text-align: center;
+  }
+
+  .number {
+    width: clamp(10rem, 30vw, 12rem);
+    font-size: clamp(3rem, 8vw, 4.5rem);
+    padding: 2rem 0;
+  }
+}
+
+/* Small mobile styles */
+@media (max-width: 25em) {
+  /* 400px */
+  header {
+    padding: 1.5rem 1rem;
+  }
+
+  .guess {
+    width: 90vw;
+    height: 20rem;
+    font-size: clamp(8rem, 18vw, 12rem);
+  }
+
+  select {
+    padding: 1rem 3rem 1rem 1.2rem;
+    font-size: 1.3rem;
+  }
+
+  .btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.6rem;
+  }
+
+  .right p {
+    padding: 1rem 1.2rem;
+    font-size: 1.4rem;
+  }
+
+  .number {
+    width: 8rem;
+    font-size: 3.5rem;
+    padding: 1.5rem 0;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-height: 30em) and (max-width: 56.25em) {
+  body {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  header {
+    padding: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .guess-head {
+    font-size: clamp(2.5rem, 6vh, 4rem);
+  }
+
+  .guess-btm {
+    font-size: clamp(1.8rem, 4vh, 2.5rem);
+    margin-top: -0.5rem;
+  }
+
+  .level {
+    margin-right: 2rem;
+  }
+
+  main {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .guess {
+    width: 15rem;
+    height: 12rem;
+    font-size: 6rem;
+  }
+
+  .number {
+    width: 8rem;
+    font-size: 3rem;
+    padding: 1rem 0;
+  }
 }
