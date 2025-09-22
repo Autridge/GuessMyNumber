@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Galindo&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Guess My Number</title>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1 class="guess-head">GUESS</h1>
+        <h1 class="guess-btm">My Number!</h1>
+      </div>
+      <div class="level">
+        <select name="Levels" id="levels">
+          <option value="rookie">Rookie</option>
+          <option value="world-class">World Class</option>
+          <option value="Legendary">Legendary</option>
+        </select>
+        <label for="levels" id="level-label">20 Attempts</label>
+      </div>
+    </header>
+    <main>
+      <section class="left">
+        <input type="number" class="guess" />
+        <button class="btn check">Check!</button>
+        <p class="message">Start guessing...</p>
+      </section>
+      <section class="right">
+        <div class="number">?</div>
+        <p class="label-score">Score: <span class="score">0</span></p>
+        <p class="label-highscore">
+          Highscore: <span class="highscore">0</span>
+        </p>
+        <button class="btn">Restart</button>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
